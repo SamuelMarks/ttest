@@ -1,4 +1,4 @@
-const Summary = require('summary');
+import { Summary } from 'summary/summary';
 
 import { StudentT as OneDataSet } from './hypothesis/one-data-set';
 import { StudentT as TwoDataSet } from './hypothesis/two-data-set.js';
@@ -33,11 +33,11 @@ const isCompatible = (structure: number[] | ISummary): boolean =>
 
 const toData = (data: ISummary | IData): IData => {
     if (Array.isArray(data) || isSummary(data)) {
-        const summary = isSummary(data) ? data : new Summary(data);
+        const summary = isSummary(data) ? data : new Summary(data as any as number[]);
         return {
-            mean: summary.mean(),
-            variance: summary.variance(),
-            size: summary.size()
+            mean: (summary.mean as (() => number))(),
+            variance: (summary.variance as (() => number))() as number,
+            size: (summary.size as (() => number))() as number
         };
     } else {
         return data as IData;

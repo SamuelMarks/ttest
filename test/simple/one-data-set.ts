@@ -1,8 +1,9 @@
+import { Summary } from 'summary/summary';
+
 import { ttest } from '../../hypothesis';
 import { equals } from '../equals';
 import { ITestProperties } from '../test';
 
-const summary = require('summary');
 
 describe('one-data-set', () => {
     it('testing not equal alternative', (done) => {
@@ -35,7 +36,7 @@ describe('one-data-set', () => {
     });
 
     it('testing summary as argument', (done) => {
-        const res = ttest(summary([1, 2, 2, 2, 4]), {
+        const res = ttest(new Summary([1, 2, 2, 2, 4]), {
             mu: 2,
             alpha: 0.05,
             alternative: 'not equal'
@@ -64,10 +65,10 @@ describe('one-data-set', () => {
     });
 
     it('testing plain object as argument', (done) => {
-        const sum = summary([1, 2, 2, 2, 4]);
+        const sum = new Summary([1, 2, 2, 2, 4]);
         const obj = ['mean', 'variance', 'size']
             .reduce(
-                (a, b) => Object.assign(a, { [b]: sum[b]() }), {}
+                (a, b) => Object.assign(a, { [b]: (sum as any)[b]() }), {}
             ) as ITestProperties;
         const res = ttest(obj, {
             mu: 2,

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const summary_1 = require("summary/summary");
 const hypothesis_1 = require("../../hypothesis");
 const equals_1 = require("../equals");
-const summary = require('summary');
 describe('one-data-set', () => {
     it('testing not equal alternative', (done) => {
         const res = hypothesis_1.ttest([1, 2, 2, 2, 4], {
@@ -31,7 +31,7 @@ describe('one-data-set', () => {
         }
     });
     it('testing summary as argument', (done) => {
-        const res = hypothesis_1.ttest(summary([1, 2, 2, 2, 4]), {
+        const res = hypothesis_1.ttest(new summary_1.Summary([1, 2, 2, 2, 4]), {
             mu: 2,
             alpha: 0.05,
             alternative: 'not equal'
@@ -57,7 +57,7 @@ describe('one-data-set', () => {
         }
     });
     it('testing plain object as argument', (done) => {
-        const sum = summary([1, 2, 2, 2, 4]);
+        const sum = new summary_1.Summary([1, 2, 2, 2, 4]);
         const obj = ['mean', 'variance', 'size']
             .reduce((a, b) => Object.assign(a, { [b]: sum[b]() }), {});
         const res = hypothesis_1.ttest(obj, {

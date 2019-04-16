@@ -1,7 +1,8 @@
+import { Summary } from 'summary/summary';
+
 import { ttest } from '../../hypothesis';
 import { equals } from '../equals';
 
-const summary = require('summary');
 
 describe('welch', () => {
     it('testing not equal alternative', (done) => {
@@ -29,7 +30,7 @@ describe('welch', () => {
     });
 
     it('testing not equal alternative', (done) => {
-        const res = ttest(summary([1, 2, 2, 2, 4]), summary([0, 3, 3, 3, 2]), {
+        const res = ttest(new Summary([1, 2, 2, 2, 4]), new Summary([0, 3, 3, 3, 2]), {
             mu: 1,
             varEqual: false,
             alpha: 0.05,

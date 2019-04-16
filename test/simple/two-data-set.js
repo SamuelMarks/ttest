@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const summary_1 = require("summary/summary");
 const hypothesis_1 = require("../../hypothesis");
 const equals_1 = require("../equals");
-const summary = require('summary');
 describe('two-data-set', () => {
     it('testing not equal alternative', (done) => {
         const res = hypothesis_1.ttest([1, 2, 2, 2, 4], [0, 3, 3, 3, 2], {
@@ -24,7 +24,7 @@ describe('two-data-set', () => {
         done();
     });
     it('testing not equal alternative', (done) => {
-        const res = hypothesis_1.ttest(summary([1, 2, 2, 2, 4]), summary([0, 3, 3, 3, 2]), {
+        const res = hypothesis_1.ttest(new summary_1.Summary([1, 2, 2, 2, 4]), new summary_1.Summary([0, 3, 3, 3, 2]), {
             mu: 1,
             varEqual: true,
             alpha: 0.05,

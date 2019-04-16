@@ -16,11 +16,10 @@
     "student t"
   ],
   "dependencies": {
-    "summary": "1.0.x",
+    "summary": "https://api.github.com/repos/SamuelMarks/summary/tarball/typescript",
     "distributions": "^2.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.7",
     "@types/distributions": "^2.0.0",
     "@types/mocha": "^5.2.6",
     "@types/node": "^11.13.4",

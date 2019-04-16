@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Summary = require('summary');
+const summary_1 = require("summary/summary");
 const one_data_set_1 = require("./hypothesis/one-data-set");
 const two_data_set_js_1 = require("./hypothesis/two-data-set.js");
 const welch_1 = require("./hypothesis/welch");
@@ -22,7 +22,7 @@ const isCompatible = (structure) => Array.isArray(structure) ||
     isCalculated(structure);
 const toData = (data) => {
     if (Array.isArray(data) || isSummary(data)) {
-        const summary = isSummary(data) ? data : new Summary(data);
+        const summary = isSummary(data) ? data : new summary_1.Summary(data);
         return {
             mean: summary.mean(),
             variance: summary.variance(),
