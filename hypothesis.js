@@ -33,8 +33,7 @@ const toData = (data) => {
         return data;
     }
 };
-function ttest /*hypothesis*/(left, right, options) {
-    // Vertify required arguments
+function ttest(left, right, options) {
     if (!isCompatible(left)) {
         throw new TypeError('left value in hypothesis test must be an array or data summary');
     }
@@ -42,36 +41,29 @@ function ttest /*hypothesis*/(left, right, options) {
         options = right;
         right = undefined;
     }
-    // Set the default options
     options = Object.assign({
         mu: 0,
         varEqual: false,
         alpha: 0.05,
         alternative: 'not equal'
     }, options);
-    // Convert alternative value
     if (ALTERNATIVE_MAP.has(options.alternative))
         options.alternative = ALTERNATIVE_MAP.get(options.alternative);
-    // Vertify mu option
     if (typeof options.mu !== 'number') {
         throw new TypeError('alpha option must be a number');
     }
-    // Vertify varEqual option
     if (typeof options.varEqual !== 'boolean') {
         throw new TypeError('varEqual option must be a boolean');
     }
-    // Vertify alpha option
     if (typeof options.alpha !== 'number') {
         throw new TypeError('alpha option must be a number');
     }
     if (options.alpha >= 1) {
         throw new RangeError('alpha must be bellow 1.0');
     }
-    // Vertify alternative option
     if (typeof options.alternative === undefined) {
         throw new Error('alternative must be either not equal, less or greater');
     }
-    // Perform the student's t test
     if (isCompatible(right)) {
         return new (options.varEqual ? two_data_set_js_1.StudentT : welch_1.StudentT)(toData(left), toData(right), options);
     }

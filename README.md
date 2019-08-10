@@ -1,10 +1,23 @@
-#ttest
-
+ttest
+=====
+Fork of the [summary](https://github.com/AndreasMadsen/ttest) project, in TypeScript.
 > Perform the Student t hypothesis test
+
+## Packaging:
+
+    version="$(jq -r .version package.json)"
+    package="${PWD##*/}-$version"
+    mkdir -p "$package"
+    cp {*.js*,*d.ts} "$package"
+    tar -cf "$package.tar" "$package"
+
+### Releasing
+
+    hub release create -m "$version release" -F "$package.tar" -a "$package.tar" "$(git rev-parse --abbrev-ref HEAD)"
 
 ## Installation
 
-```sheel
+```sh
 npm install ttest
 ```
 
